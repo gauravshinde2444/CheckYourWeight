@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+	<html>
+		<head>
+		 <style>
+		    body{
+			  text-align: center;
+			   background: #2c2525;
+			}
+			
+			.heading{
+				font-size: 20px;
+				font-weight: 600;
+				color: white;
+				margin-bottom: 20px;
+			}
+			input, select, button{
+			padding: 5px 10px;
+			}
+			button{
+			    background: gray;
+				color: white;
+				cursor: pointer;
+				border: none;
+			}
+			.hide{
+			 display: none;
+			}
+		 </style>
+		</head>
+		<body>
+		   <div class="heading">
+				Calculate weight of an object on a planet.
+		   </div>
+		   <input type="number" oninput="check()" onblur="check()" id="weight" placeholder="Enter Weight" />
+		   <select id="planet" onchange="calculate()">
+		   <option value="Mercury">Mercury</option>
+		   <option value="Venus">Venus</option>
+		   <option value="">Earth</option>
+		   <option value="Mars">Mars</option>
+		   <option value="Jupiter">Jupiter</option>
+		   <option value="Saturn">Saturn</option>
+		   <option value="Uranus">Uranus</option>
+		   <option value="Neptune">Neptune</option>
+		   <option value="Pluto">Pluto</option>
+		   </select>
+		   <button id="button" disabled onclick="calculate()">Calculate Weight</button>
+		   
+		   <div id="ch" class="hide" style="color: white;">Mass is required.</div>
+		   <div id="result" class="hide" style="color: white;"> The weight of the object on <span id="we"> <span>. </div>
+		</body>
+		
+		<script>
+		 function check(){
+		   let w = document.getElementById("weight").value;
+		   if(w==""){
+		     document.getElementById("button").setAttribute("disabled", "");
+		     document.getElementById("ch").classList.remove("hide");
+		   }
+		   else{
+		     document.getElementById("button").removeAttribute('disabled');
+		     document.getElementById("ch").classList.add("hide");
+		   }
+		 }
+		 function calculate(){
+		   let w = document.getElementById("weight").value;
+		   let planet = document.getElementById("planet").value;
+		   let res = 0;
+		   if(planet==="Mercury"){
+		     res = (w/9.81)*3.7;
+		   }
+		   else if(planet==="Venus"){
+		     res = (w/9.81)*8.87;
+		   }else if(planet==="Earth"){
+		     res = (w);
+		   }else if(planet==="Mars"){
+		     res = (w/9.81)*3.7;
+		   }else if(planet==="Jupiter"){
+		     res = (w/9.81)*24.79;
+		   }else if(planet==="Saturn"){
+		     res = (w/9.81)*10.44;
+		   }else if(planet==="Uranus"){
+		     res = (w/9.81)*8.69;
+		   }else if(planet==="Neptune"){
+		     res = (w/9.81)*11.17;
+		   }else if(planet==="Pluto"){
+		     res = (w/9.81)*0.07;
+		   }
+		   document.getElementById("result").classList.remove("hide");
+		   document.getElementById("we").innerHTML = planet +" is "+res+" kg.";
+		 }
+		
+		</script>
+		
+	</html>
